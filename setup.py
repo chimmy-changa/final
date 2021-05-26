@@ -63,7 +63,7 @@ setuptools.setup(
     setup_requires=["pytest-runner"],
     tests_require=tests_require,
     extras_require={"dev": ["aiohttp-devtools"] + tests_require},
-    entry_points={  
+    entry_points={
         "console_scripts": ["matlab-jupyter-app = jupyter_matlab_proxy.app:main"],
     },
     include_package_data=True,
