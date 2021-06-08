@@ -46,7 +46,7 @@ jobs:
 
       - name: Lint with black
         run: |
-          black --check .
+          black -check .
 
       - name: Test with pytest
         run: |
