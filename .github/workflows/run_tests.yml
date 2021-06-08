@@ -1,13 +1,9 @@
-# Copyright 2020-2021 The MathWorks, Inc
-name: Run Tests
+name: MATLAB Jupyter Integration
 
-on:
-  push:
-    branches:
-      - 'main'
+on: [push]
 
 jobs:
-  Node_Tests:
+  node_tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,23 +11,24 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Use Node.js 13.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 13.x
 
       - name: Install Node dependencies
         run: npm --prefix gui install gui
 
+      - name: Build Project
+        run: npm --prefix gui build --if-present
+
       - name: Run Node tests
         run: npm --prefix gui test
-        env:
-          CI: true
 
-  Python_Tests:
+  python_tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8]
 
     steps:
       - name: Checkout
@@ -42,7 +39,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Python dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install black pytest
@@ -52,4 +49,5 @@ jobs:
           black --check .
 
       - name: Test with pytest
-        run: python setup.py test
+        run: |
+          python setup.py test
