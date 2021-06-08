@@ -51,7 +51,7 @@ tests_require = [
 
 setuptools.setup(
     name="dummy-gg",
-    version="0.1.10",
+    version="0.1.11",
     url="https://github.com/dummy/gg",
     author="Dummy gg",
     description="dummy gggg",
