@@ -1,6 +1,9 @@
 name: MATLAB Jupyter Integration
 
-on: [push]
+on:
+  push:
+    branches:
+      - 'main'
 
 jobs:
   node_tests:
